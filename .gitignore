@@ -1,1 +1,6 @@
-rats
+.DS_Store
+out
+target
+*.iml
+.idea
+*.idea
