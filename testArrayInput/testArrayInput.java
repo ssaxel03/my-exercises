@@ -6,24 +6,26 @@ public class testArrayInput {
 			System.exit(0);
 		}
 		
-		// int[] numbers;
+		int[] numbers;
 
 
 		if(args.length > 1) {
 			
-			int[] numbers = new int[args.length];
+			numbers = new int[args.length];
 			for(int i = 0 ; i < args.length ; i++)
 			{
    				numbers[i] = Integer.parseInt(args[i]);
 			}
 		
-			print(numbers);	
+				
 			
 		} else {
 			
-			int[] numbers = {0, 5, 1209, 6, 2, 111, 112, 33};
-			print(numbers);
+			numbers = new int[]{0, 5, 1209, 6, 2, 111, 112, 33};
+			
 		}
+
+		print(numbers);
 	}
 
 	public static void print(int[] numbers) {
