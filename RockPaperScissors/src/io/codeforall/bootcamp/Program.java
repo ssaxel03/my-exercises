@@ -8,7 +8,7 @@ public class Program {
 
         System.out.println("Start of game");
 
-        int limit = (int) Math.ceil(Game.MAX_ROUNDS / 2);
+        int limit = (Game.MAX_ROUNDS / 2) + 1;
 
         while(!(player1.getWins() == limit || player2.getWins() == limit)){
 

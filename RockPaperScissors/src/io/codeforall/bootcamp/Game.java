@@ -2,11 +2,11 @@ package io.codeforall.bootcamp;
 
 public class Game {
 
-    public final static float MAX_ROUNDS = 5f;
+    public final static int MAX_ROUNDS = 5;
 
     public static void play(Player player1, Player player2) {
 
-        // comparar moves
+        // compare moves
 
         if (player1.getCurrentMove() == player2.getCurrentMove()) {
             System.out.println("It's a draw");
