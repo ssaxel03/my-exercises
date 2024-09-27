@@ -2,11 +2,27 @@ package io.codeforall.bootcamp;
 
 public class Game {
 
-    public final static int MAX_ROUNDS = 5;
+    public final static int MAX_ROUNDS = 500;
 
     public static void play(Player player1, Player player2) {
 
         // compare moves
+
+        if(Move.getWinner(player1.getCurrentMove(), player2.getCurrentMove()) == 1) {
+            System.out.println(player1.getName() + " wins");
+            player1.incWins();
+            return;
+        }
+        if(Move.getWinner(player1.getCurrentMove(), player2.getCurrentMove()) == 2) {
+            System.out.println(player2.getName() + " wins");
+            player2.incWins();
+            return;
+        }
+
+        System.out.println("It's a draw");
+
+
+        /*
 
         if (player1.getCurrentMove() == player2.getCurrentMove()) {
             System.out.println("It's a draw");
@@ -46,7 +62,7 @@ public class Game {
             return;
         }
 
-
+        */
 
     }
 
