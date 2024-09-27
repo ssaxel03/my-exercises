@@ -2,11 +2,14 @@ package io.codeforall.bootcamp;
 
 public class Game {
 
-    public final static int MAX_ROUNDS = 500;
+    public final static int MAX_ROUNDS = 3;
 
     public static void play(Player player1, Player player2) {
 
         // compare moves
+
+        System.out.println(player1.getName() + " played " + player1.getCurrentMove().getMoveName());
+        System.out.println(player2.getName() + " played " + player2.getCurrentMove().getMoveName());
 
         if(Move.getWinner(player1.getCurrentMove(), player2.getCurrentMove()) == 1) {
             System.out.println(player1.getName() + " wins");
