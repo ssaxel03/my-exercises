@@ -7,11 +7,11 @@ public class Person {
     private Jobs job;
     private Bank bank;
 
-    public Person(String name, Jobs job, String bankName) {
+    public Person(String name, Jobs job, Bank bank) {
         this.name = name;
         this.pocket = 0f;
         this.job = job;
-        this.bank = new Bank(bankName);
+        this.bank = bank;
     }
 
     public String getName() {
@@ -47,17 +47,30 @@ public class Person {
     }
 
     public void deposit(float amount) {
-        if (usePocket(amount)) {
-            this.bank.deposit(amount);
+        if(amount > 0) {
+            if (usePocket(amount)) {
+                this.bank.deposit(amount);
+                return;
+            }
+
         }
+        System.out.println("Amount not valid");
     }
 
     public void withdraw(float amount) {
-        this.bank.withdraw(amount);
+        if(amount > 0) {
+            this.bank.withdraw(amount);
+            return;
+        }
+        System.out.println("Amount not valid");
     }
 
     public String getBankName() {
         return this.bank.getName();
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
     public float getBankBalance() {
@@ -65,7 +78,11 @@ public class Person {
     }
 
     public void makeBankPayment(float amount) {
-        this.bank.payment(amount);
+        if (amount > 0) {
+            this.bank.payment(amount);
+            return;
+        }
+        System.out.println("Amount not valid");
     }
 
     public void getBankLog() {

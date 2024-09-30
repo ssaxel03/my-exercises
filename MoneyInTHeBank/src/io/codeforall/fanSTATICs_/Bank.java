@@ -34,6 +34,7 @@ public class Bank {
     }
 
     public void deposit(float depositAmount) {
+
         this.balance += depositAmount;
         System.out.println("Deposit was successful (" + depositAmount + ")");
         this.addMove("DEPO", depositAmount);
