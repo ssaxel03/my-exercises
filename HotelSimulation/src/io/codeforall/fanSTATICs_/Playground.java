@@ -12,5 +12,9 @@ public class Playground {
 
         client.checkOut(hotel2);
 
+        Room room = new Room();
+
+        System.out.println(room);
+
     }
 }

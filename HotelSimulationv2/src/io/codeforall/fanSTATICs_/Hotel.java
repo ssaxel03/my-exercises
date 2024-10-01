@@ -34,6 +34,7 @@ public class Hotel {
         for (Room room: rooms) {
             if(room.getIsAvailable()){
                 room.changeAvailableState();
+                this.roomsAvailable--;
                 return room;
             }
         }
@@ -45,6 +46,8 @@ public class Hotel {
     public Room checkOut(Room key) {
         for (Room room : rooms) {
             if(room == key){
+                room.changeAvailableState();
+                this.roomsAvailable++;
                 return null;
             }
         }
