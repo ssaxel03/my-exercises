@@ -4,7 +4,6 @@ public class RecyclableDemon extends Genie{
     private boolean hasBeenRecycled;
 
     public RecyclableDemon() {
-        super(0);
         this.hasBeenRecycled = false;
     }
 
@@ -14,5 +13,11 @@ public class RecyclableDemon extends Genie{
 
     public void Recycle() {
         this.hasBeenRecycled = true;
+    }
+
+    @Override
+    public void grantWish() {
+        System.out.println("Wish granted");
+        this.incWishesGranted();
     }
 }

@@ -30,6 +30,10 @@ public class Playground {
         genie6.grantWish();
         genie7.grantWish();
         magicLamp.recycle((RecyclableDemon) genie4);
+
+        MagicLamp magicLamp2 = new MagicLamp(3);
+
+        MagicLamp.compare(magicLamp, magicLamp2);
     }
 
 

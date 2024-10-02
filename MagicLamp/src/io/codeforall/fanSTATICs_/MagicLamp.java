@@ -62,4 +62,13 @@ public class MagicLamp {
 
     }
 
+    public static void compare(MagicLamp magicLamp1, MagicLamp magicLamp2) {
+        // capacity, remaining geniuses, number of recharched
+
+        System.out.println("DESC  LAMP1   LAMP2");
+        System.out.printf("CAPA  %05d   %05d%n", magicLamp1.getCapacity(), magicLamp2.getCapacity());
+        System.out.printf("REMA  %05d   %05d%n", magicLamp1.getRemainingGenies(), magicLamp2.getRemainingGenies());
+        System.out.printf("RECY  %05d   %05d%n", magicLamp1.getTimesRecycled(), magicLamp2.getTimesRecycled());
+    }
+
 }
