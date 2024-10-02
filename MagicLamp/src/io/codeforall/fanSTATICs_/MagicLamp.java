@@ -30,7 +30,7 @@ public class MagicLamp {
         }
 
         if (this.geniesAvailable != 0) {
-            System.out.println("This lamp still has demons available");
+            System.out.println("This lamp still has genies available");
             return;
         }
 
