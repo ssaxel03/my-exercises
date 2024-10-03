@@ -62,6 +62,12 @@ public class MagicLamp {
 
     }
 
+    public boolean equals(MagicLamp magicLamp) {
+        return (this.getCapacity() == magicLamp.getCapacity() &&
+                this.getRemainingGenies() == magicLamp.getRemainingGenies() &&
+                this.getTimesRecycled() == magicLamp.getTimesRecycled());
+    }
+
     public static void compare(MagicLamp magicLamp1, MagicLamp magicLamp2) {
         // capacity, remaining geniuses, number of recharched
 
