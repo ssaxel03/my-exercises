@@ -26,4 +26,8 @@ public class Genie {
     public void incWishesGranted() {
         this.wishesGranted++;
     }
+
+    public boolean isDemon() {
+        return false;
+    }
 }

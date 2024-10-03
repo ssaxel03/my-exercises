@@ -20,4 +20,9 @@ public class RecyclableDemon extends Genie{
         System.out.println("Wish granted");
         this.incWishesGranted();
     }
+
+    @Override
+    public boolean isDemon() {
+        return true;
+    }
 }

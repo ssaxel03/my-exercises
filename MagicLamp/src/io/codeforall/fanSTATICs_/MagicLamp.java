@@ -23,7 +23,15 @@ public class MagicLamp {
         return timesRecycled;
     }
 
-    public void recycle(RecyclableDemon recyclableDemon) {
+    public void recycle(Genie genie) {
+
+        if (!genie.isDemon()){
+            System.out.println("This genie is not a demon");
+            return;
+        }
+
+        RecyclableDemon recyclableDemon = (RecyclableDemon) genie;
+
         if (recyclableDemon.getHasBeenRecycled()) {
             System.out.println("This demon has already been recycled");
             return;
