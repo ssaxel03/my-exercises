@@ -6,6 +6,7 @@ import com.googlecode.lanterna.screen.ScreenCharacterStyle;
 import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 import io.codeforall.bootcamp.cars.Car;
+import io.codeforall.bootcamp.cars.Mechanic;
 
 import java.text.NumberFormat;
 
@@ -54,7 +55,7 @@ public final class Field {
      * Displays a group of cars in the screen
      * @param cars an array of cars
      */
-    public static void draw(Car[] cars) {
+    public static void draw(Car[] cars, Mechanic[] mechanics) {
 
         screen.clear();
 
@@ -66,6 +67,10 @@ public final class Field {
                 screen.putString(c.getPos().getCol(), c.getPos().getRow(), c.toString(), Terminal.Color.WHITE, Terminal.Color.RED, ScreenCharacterStyle.Blinking);
             }
 
+        }
+
+        for(Mechanic m : mechanics) {
+            screen.putString(m.getPos().getCol(), m.getPos().getRow(), m.toString(), Terminal.Color.WHITE, Terminal.Color.GREEN, ScreenCharacterStyle.Blinking);
         }
 
         /*

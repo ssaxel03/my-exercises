@@ -29,4 +29,8 @@ public class Position {
     public boolean equals(Position position) {
         return this.col == position.getCol() && this.row == position.getRow();
     }
+
+    public int getDIstance(Position position) {
+        return Math.abs(this.getCol() - position.getCol()) + Math.abs(this.getRow() - position.getRow());
+    }
 }

@@ -17,7 +17,7 @@ abstract  public class Car {
 
     public Car(String letter) {
         this.letter = letter;
-        this.velocity = 5;
+        this.velocity = 3;
         this.hasCrashed = false;
         // System.out.println(Randomizer.getRandomInt(Field.getWidth()));
         pos = new Position(Randomizer.getRandomInt(Field.getWidth()), Randomizer.getRandomInt(Field.getHeight()));
@@ -82,9 +82,19 @@ abstract  public class Car {
         this.hasCrashed = true;
     }
 
+    public void repair() {
+        this.hasCrashed = false;
+    }
+
     @Override
     public String toString() {
         return (this.hasCrashed) ? "C" : letter;
     }
 
+    public void getDebug() {
+        System.out.printf("Car %s at x %d y %d%n",
+                this.letter,
+                this.pos.getCol(),
+                this.pos.getRow());
+    }
 }
