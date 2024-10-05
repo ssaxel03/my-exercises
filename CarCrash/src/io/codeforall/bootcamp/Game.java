@@ -8,8 +8,8 @@ import io.codeforall.bootcamp.field.Field;
 
 public class Game {
 
-    public static final int MANUFACTURED_CARS = 100;
-    public static final int MANUFACTURED_MECHANICS = 15;
+    public static final int MANUFACTURED_CARS = 200;
+    public static final int MANUFACTURED_MECHANICS = 30;
 
     /** Container of Cars */
     private Car[] cars;

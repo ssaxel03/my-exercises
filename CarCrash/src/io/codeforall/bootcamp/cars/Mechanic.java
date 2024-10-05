@@ -22,6 +22,28 @@ public class Mechanic extends Car{
 
         while(tries != 2) {
             if (targetCar != null) {
+
+                if(targetCar.getHasCrashed()) {
+
+                    if (
+                            Math.abs(this.getPos().getCol() - targetCar.getPos().getCol()) >
+                                    Math.abs(this.getPos().getRow() - targetCar.getPos().getRow())) {
+                        if (this.getPos().getCol() - targetCar.getPos().getCol() > 0) {
+                            this.getPos().incCol(-1);
+                            return;
+                        }
+                        this.getPos().incCol(1);
+                        return;
+                    }
+
+                    if (this.getPos().getRow() - targetCar.getPos().getRow() > 0) {
+                        this.getPos().incRow(-1);
+                        return;
+                    }
+                    this.getPos().incRow(1);
+                    return;
+
+                }
                 /*
                 if (Math.abs(this.getPos().getCol() - targetCar.getPos().getCol()) == 0) {
                     if (this.getPos().getRow() - targetCar.getPos().getRow() > 0) {
@@ -42,23 +64,7 @@ public class Mechanic extends Car{
                 */
 
 
-                if (
-                        Math.abs(this.getPos().getCol() - targetCar.getPos().getCol()) >
-                                Math.abs(this.getPos().getRow() - targetCar.getPos().getRow())) {
-                    if (this.getPos().getCol() - targetCar.getPos().getCol() > 0) {
-                        this.getPos().incCol(-1);
-                        return;
-                    }
-                    this.getPos().incCol(1);
-                    return;
-                }
 
-                if (this.getPos().getRow() - targetCar.getPos().getRow() > 0) {
-                    this.getPos().incRow(-1);
-                    return;
-                }
-                this.getPos().incRow(1);
-                return;
             }
 
             for (Car car : cars) {
