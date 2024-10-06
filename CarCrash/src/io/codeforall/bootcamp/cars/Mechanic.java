@@ -74,6 +74,9 @@ public class Mechanic extends Car{
                         car.Follow();
                         distance = this.getPos().getDIstance(car.getPos());
                     }
+                    if(car.getPos().equals(targetCar.getPos())) {
+                        car.Follow();
+                    }
                 }
             }
             tries++;
