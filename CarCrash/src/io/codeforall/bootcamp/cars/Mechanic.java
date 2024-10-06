@@ -7,7 +7,7 @@ public class Mechanic extends Car{
     private Car targetCar;
 
     public Mechanic() {
-        super("F");
+        super("M");
         this.targetCar = null;
     }
 
@@ -68,9 +68,10 @@ public class Mechanic extends Car{
             }
 
             for (Car car : cars) {
-                if (car.getHasCrashed()) {
+                if (car.getHasCrashed() && !car.getHasMechanicFollow()) {
                     if(this.getPos().getDIstance(car.getPos()) < distance) {
                         this.targetCar = car;
+                        car.Follow();
                         distance = this.getPos().getDIstance(car.getPos());
                     }
                 }

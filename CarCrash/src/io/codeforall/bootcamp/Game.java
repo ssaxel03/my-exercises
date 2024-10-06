@@ -1,19 +1,18 @@
 package io.codeforall.bootcamp;
 
-import io.codeforall.bootcamp.cars.Car;
-import io.codeforall.bootcamp.cars.CarFactory;
-import io.codeforall.bootcamp.cars.Mechanic;
-import io.codeforall.bootcamp.cars.MechanicFactory;
+import io.codeforall.bootcamp.cars.*;
 import io.codeforall.bootcamp.field.Field;
 
 public class Game {
 
-    public static final int MANUFACTURED_CARS = 200;
+    public static final int MANUFACTURED_CARS = 100;
     public static final int MANUFACTURED_MECHANICS = 30;
+    public static final int MANUFACTURED_MOTORCYCLES = 10;
 
     /** Container of Cars */
     private Car[] cars;
     private Mechanic[] mechanics;
+    private Motorcycle[] motorcycles;
 
     /** Animation delay */
     private int delay;
@@ -36,12 +35,18 @@ public class Game {
         for(int i = 0; i < mechanics.length; i++) {
             mechanics[i] = MechanicFactory.getNewMechanic();
         }
+
         cars = new Car[MANUFACTURED_CARS];
         for (int i = 0; i < cars.length; i++) {
             cars[i] = CarFactory.getNewCar();
         }
 
-        Field.draw(cars, mechanics);
+        motorcycles = new Motorcycle[MANUFACTURED_MOTORCYCLES];
+        for(int i = 0; i < motorcycles.length; i++) {
+            motorcycles[i] = MotorcycleFactory.getNewMotorcycle();
+        }
+
+        Field.draw(cars, mechanics, motorcycles);
 
     }
 
@@ -69,19 +74,11 @@ public class Game {
             // Verify crashes
             checkCrashes();
 
-            for(Car car : cars) {
-                car.getDebug();
-            }
-
             // Verify repairs
             checkRepairs();
 
-            for(Car car : cars) {
-                car.getDebug();
-            }
-
             // Update screen
-            Field.draw(cars, mechanics);
+            Field.draw(cars, mechanics, motorcycles);
 
         }
 
@@ -93,7 +90,10 @@ public class Game {
             car.move(this.frame);
         }
         for (Mechanic mechanic : mechanics) {
-            mechanic.move(this.frame, cars);
+            mechanic.move(this.frame, this.cars);
+        }
+        for(Motorcycle motorcycle : motorcycles) {
+            motorcycle.move(this.frame, this.cars);
         }
     }
 
