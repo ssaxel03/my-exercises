@@ -14,6 +14,10 @@ public abstract class Enemy extends GameObject{
         return this.isDead;
     }
 
+    public int getHealthLeft() {
+        return this.health;
+    }
+
     public void hit(int hitAmount) {
 
         this.health -= hitAmount;
@@ -21,6 +25,21 @@ public abstract class Enemy extends GameObject{
         if(health <= 0) {
             this.isDead = true;
         }
+
+
+
+    }
+
+    public void hit(int hitAmount, boolean headshot) {
+
+        this.health -= hitAmount;
+
+        if(this.health <= 0) {
+            this.isDead = true;
+            this.health = 0;
+        }
+
+        System.out.printf(headshot ? "%s has been hit in the head (%d health)%n" : "%s has been hit (%d health)%n", toString(), this.health);
 
     }
 

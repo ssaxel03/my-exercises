@@ -15,8 +15,13 @@ public class SniperRifle {
             return;
         }
 
-        enemy.hit(this.bulletDamage);
-        System.out.printf("%s has been hit (%d damage)%n", enemy.toString(), this.bulletDamage);
+        if(Math.random() < 0.1) {
+            int damage = enemy.getHealthLeft();
+            enemy.hit(damage, true);
+            return;
+        }
+
+        enemy.hit(this.bulletDamage, false);
     }
 
 }
