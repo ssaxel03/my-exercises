@@ -69,14 +69,16 @@ public class Mechanic extends Car{
 
             for (Car car : cars) {
                 if (car.getHasCrashed() && !car.getHasMechanicFollow()) {
-                    if(this.getPos().getDIstance(car.getPos()) < distance) {
+                    if(this.getPos().getDIstance(car.getPos()) <= distance) {
                         this.targetCar = car;
                         car.Follow();
                         distance = this.getPos().getDIstance(car.getPos());
                     }
-                    if(car.getPos().equals(targetCar.getPos())) {
+                    /*if(car.getPos().equals(targetCar.getPos())) {
                         car.Follow();
                     }
+
+                     */
                 }
             }
             tries++;
