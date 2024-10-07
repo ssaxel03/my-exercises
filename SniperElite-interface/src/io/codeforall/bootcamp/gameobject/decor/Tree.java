@@ -7,6 +7,10 @@ import io.codeforall.bootcamp.gameobject.GameObject;
  */
 public class Tree extends GameObject {
 
+    public void burn() {
+        System.out.println("A tree is burning");
+    }
+
     /**
      * @see GameObject#getMessage()
      */

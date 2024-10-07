@@ -5,6 +5,8 @@ package io.codeforall.bootcamp.gameobject;
  */
 public abstract class GameObject {
 
+    public abstract void burn();
+
     /**
      * Provides a short object description
      * @return Message describing the object

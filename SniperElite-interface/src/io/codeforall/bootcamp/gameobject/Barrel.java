@@ -25,6 +25,12 @@ public class Barrel extends GameObject implements Destroyable{
         return this.destroyed;
     }
 
+    public void burn() {
+        this.currentDamage = barrelType.getMaxDamage();
+        this.destroyed = true;
+        System.out.printf("A %s barrel is burning%n", this.barrelType.toString());
+    }
+
     public String getMessage() {
         return String.format("%s Barrel spotted", this.barrelType.toString());
     }

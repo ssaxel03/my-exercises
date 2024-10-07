@@ -45,12 +45,19 @@ public abstract class Enemy extends GameObject implements Destroyable {
         return this.destroyed;
     }
 
+    @Override
+    public void burn() {
+        this.health = 0;
+        this.destroyed = true;
+        System.out.println("A soldier is burning");
+    }
+
     /**
      * @see GameObject#getMessage()
      */
     @Override
     public String getMessage() {
-        return "Tango Acquired. Taking it down!";
+        return "Soldier spotted. Taking it down!";
     }
 
 }

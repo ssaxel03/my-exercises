@@ -1,5 +1,6 @@
 package io.codeforall.bootcamp;
 
+import io.codeforall.bootcamp.gameobject.Barrel;
 import io.codeforall.bootcamp.gameobject.Destroyable;
 import io.codeforall.bootcamp.gameobject.GameObject;
 import io.codeforall.bootcamp.gameobject.GameObjectFactory;
@@ -20,6 +21,7 @@ public class Game {
 
     /**
      * Construct the game
+     *
      * @param numberObjects the number of game objects to create
      */
     public Game(int numberObjects) {
@@ -34,13 +36,13 @@ public class Game {
      */
     public void start() {
 
-        for (GameObject gameObject : gameObjects) {
+        for (int i = 0; i < gameObjects.length; i++) {
 
-            System.out.println(gameObject.getMessage());
+            System.out.println(gameObjects[i].getMessage());
 
-            if (gameObject instanceof Destroyable) {
+            if (gameObjects[i] instanceof Destroyable) {
 
-                Destroyable target = (Destroyable) gameObject;
+                Destroyable target = (Destroyable) gameObjects[i];
                 while (!target.isDestroyed()) {
 
                     System.out.println("Making the shot...");
@@ -48,22 +50,29 @@ public class Game {
 
                 }
 
+
+                if (Math.random() < 0.5 && gameObjects[i] instanceof Barrel) {
+
+                    System.out.println("A fire started");
+
+                    for(int j = 1; j < 3; j++) {
+                        gameObjects[i + j].burn();
+                    }
+                }
+
                 System.out.println("Target is neutralized. I repeat, Target is neutralized!");
 
             }
-
-
         }
 
         System.out.println("All targets are down. I repeat all targets are down. " + sniperRifle.getShotsFired() + " shots.");
-
     }
 
     private GameObject[] createGameObjects(int numberObjects) {
 
         GameObject[] gameObjects = new GameObject[numberObjects];
 
-        for (int i = 0; i <gameObjects.length ; i++) {
+        for (int i = 0; i < gameObjects.length; i++) {
 
             gameObjects[i] = Math.random() < ENEMY_PROBABILITY ? GameObjectFactory.createDestroyable() : new Tree();
 
