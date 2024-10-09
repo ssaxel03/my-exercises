@@ -8,63 +8,60 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 import java.sql.SQLOutput;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-public class Player implements KeyboardHandler {
+public class Player {
 
     private Color color;
     private int size;
     Rectangle playerSprite;
     Keyboard keyboard;
+    // final ScheduledExecutorService executorService;
 
-    public Player(int size){
+    public Player(int size) {
         this.color = Color.ORANGE;
         this.size = size;
 
-        keyboardInit();
+        /*
+        Runnable moveRight = new Runnable() {
+            @Override
+            public void run() {
+                moveRight();
+            }
+        };
+         */
 
-        this.playerSprite = new Rectangle(10, 10, size, size);
+        //executorService = Executors.newSingleThreadScheduledExecutor();
+        // executorService.scheduleAtFixedRate(moveRight, 0, 100, TimeUnit.MILLISECONDS);
+
+        this.playerSprite = new Rectangle(10, 900, size, size);
         this.playerSprite.setColor(color);
         this.playerSprite.fill();
     }
 
-    public void keyboardInit() {
-
-        keyboard = new Keyboard(this);
-
-        KeyboardEvent moveRight = new KeyboardEvent();
-        moveRight.setKey(KeyboardEvent.KEY_D);
-        moveRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent moveLeft = new KeyboardEvent();
-        moveLeft.setKey(KeyboardEvent.KEY_A);
-        moveLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(moveRight);
-        keyboard.addEventListener(moveLeft);
-
-    }
-
     public void moveRight() {
-        this.playerSprite.translate(10, 0);
-        System.out.println("AQUI");
+        this.playerSprite.translate(20, 0);
     }
 
     public void moveLeft() {
-        this.playerSprite.translate(-10, 0);
+        this.playerSprite.translate(-20, 0);
     }
 
-
-
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        switch(keyboardEvent.getKey()){
-            case KeyboardEvent.KEY_D -> moveRight();
-            case KeyboardEvent.KEY_A -> moveLeft();
-        }
+    public void moveUp() {
+        this.playerSprite.translate(0, -20);
     }
 
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public void moveDown() {
+        this.playerSprite.translate(0, 20);
+    }
 
+    public int getSize() {
+        return size;
+    }
+
+    public int[] getPosition() {
+        return new int[] {playerSprite.getX(), playerSprite.getY()};
     }
 }
