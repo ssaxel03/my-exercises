@@ -8,7 +8,8 @@ import io.codeforall.bootcamp.grid.GridColor;
 public enum CarType {
 
     FIAT(GridColor.BLUE),
-    MUSTANG(GridColor.GREEN);
+    MUSTANG(GridColor.GREEN),
+    PLAYER(GridColor.MAGENTA);
 
     private GridColor color;
 
