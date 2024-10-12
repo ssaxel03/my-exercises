@@ -2,6 +2,7 @@ package io.codeforall.bootcamp;
 
 import io.codeforall.bootcamp.car.Car;
 import io.codeforall.bootcamp.car.CarFactory;
+import io.codeforall.bootcamp.car.PlayerCar;
 import io.codeforall.bootcamp.grid.Grid;
 import io.codeforall.bootcamp.grid.GridFactory;
 import io.codeforall.bootcamp.grid.GridType;
@@ -21,6 +22,7 @@ public class Game {
      * Container of Cars
      */
     private Car[] cars;
+    private PlayerCar playerCar;
 
     /**
      * Animation delay
@@ -35,7 +37,7 @@ public class Game {
     /**
      * Number of cars to manufacture
      */
-    private int manufacturedCars = 20;
+    private int manufacturedCars = 50;
 
 
     /**
@@ -60,7 +62,12 @@ public class Game {
         grid.init();
 
         cars = new Car[manufacturedCars];
+
         collisionDetector = new CollisionDetector(cars);
+
+        playerCar = CarFactory.getNewPlayerCar(grid);
+        playerCar.setCollisionDetector(collisionDetector);
+        playerCar.setGrid(grid);
 
         for (int i = 0; i < manufacturedCars; i++) {
 
@@ -99,6 +106,8 @@ public class Game {
             c.move();
             collisionDetector.check(c);
         }
+
+        playerCar.move();
 
     }
 

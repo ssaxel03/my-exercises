@@ -1,6 +1,9 @@
 package io.codeforall.bootcamp.car;
 
+import io.codeforall.bootcamp.gfx.simplegfx.SimpleGfxGridPosition;
 import io.codeforall.bootcamp.grid.Grid;
+import io.codeforall.bootcamp.grid.GridColor;
+import io.codeforall.bootcamp.grid.position.GridPosition;
 
 /**
  * A factory of different types of Cars
@@ -34,4 +37,18 @@ public class CarFactory {
 
     }
 
+    public static PlayerCar getNewPlayerCar(Grid grid) {
+
+        CarType carType = CarType.values()[2];
+
+        PlayerCar car;
+
+        GridPosition gridPos = grid.makeGridPosition();
+        gridPos.setColor(GridColor.MAGENTA);
+
+        car = new PlayerCar(gridPos);
+
+        return car;
+
+    }
 }
