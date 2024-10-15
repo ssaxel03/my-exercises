@@ -10,7 +10,6 @@ public class Main {
 
         System.out.println("--- USING ITERATOR ---");
         Iterator<Integer> it = r.iterator();
-        Iterator<Integer> itBack = r.iteratorBack();
 
         // REMOVER
         while (it.hasNext()) {
@@ -27,15 +26,19 @@ public class Main {
             System.out.println("Iterated: " + j);
         }
 
+        r.toggleUseForward();
+
         System.out.println("--- USING ITERATOR BACKWARDS ---");
 
-        // iterator backwards
-        while (itBack.hasNext()) {
+        r = new Range(-5, 5);
+        it = r.iterator();
 
-            Integer i = itBack.next();
+        while (it.hasNext()) {
+
+            Integer i = it.next();
 
             if (i == 1 || i == 2 || i == 3) {
-                itBack.remove();
+                it.remove();
             }
         }
 
