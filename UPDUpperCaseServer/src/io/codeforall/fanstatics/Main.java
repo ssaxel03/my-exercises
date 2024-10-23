@@ -3,8 +3,6 @@ package io.codeforall.fanstatics;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
 
 public class Main {
 
@@ -32,6 +30,7 @@ public class Main {
             }
 
             byte[] sendBuffer = (uppercase + "\n").getBytes();
+
 
             DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, receivePacket.getAddress(), receivePacket.getPort());
             socket.send(sendPacket);
