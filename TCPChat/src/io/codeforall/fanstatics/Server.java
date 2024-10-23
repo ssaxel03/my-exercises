@@ -14,23 +14,32 @@ public class Server {
         int portNumber = 8080;
 
         ServerSocket serverSocket = new ServerSocket(portNumber);
-        Socket clientSocket = serverSocket.accept();
+        Socket clientSocket1 = serverSocket.accept();
+
+        PrintWriter out1 = new PrintWriter(clientSocket1.getOutputStream(), true);
+        BufferedReader in1 = new BufferedReader(new InputStreamReader(clientSocket1.getInputStream()));
+
+        out1.println("WAITING FOR USER TO CHAT");
+
+        Socket clientSocket2 = serverSocket.accept();
+
+        PrintWriter out2 = new PrintWriter(clientSocket2.getOutputStream(), true);
+        BufferedReader in2 = new BufferedReader(new InputStreamReader(clientSocket2.getInputStream()));
+
+        out1.println("READY TO CHAT");
+        out2.println("READY TO CHAT");
 
         while(true) {
 
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String in1Str = in1.readLine();
+            String in2Str = in2.readLine();
 
-            String message = in.readLine();
-
-            if(message.equals("exit")) {
-                clientSocket.close();
-                System.exit(0);
+            if(!(in1Str == null)) {
+                out2.println(in1Str);
             }
 
-            if(!(message == null)) {
-                System.out.println(message);
-                out.println(message);
+            if(!(in2Str == null)) {
+                out1.println(in2Str);
             }
         }
     }

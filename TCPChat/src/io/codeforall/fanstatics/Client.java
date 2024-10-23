@@ -13,14 +13,34 @@ public class Client {
 
         Socket clientSocket = new Socket("localhost", 8080);
 
+        Scanner scanner = new Scanner(System.in);
+
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        while(true) {
+        Thread write = new Thread() {
+            public void run() {
+                String message = null;
+                try {
+                    message = in.readLine();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                if (message != null) {
+                    System.out.println(message);
+                }
+            }
+        };
 
-            out.println(new Scanner(System.in).nextLine());
-            String serverMessage = in.readLine();
-            System.out.println(serverMessage == null ? "CONNECTION CLOSED" : serverMessage);
+        Thread read = new Thread() {
+            public void run() {
+                out.println(scanner.nextLine());
+            }
+        };
+
+        while(true) {
+            write.run();
+            read.run();
         }
 
     }
