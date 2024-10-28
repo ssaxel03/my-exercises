@@ -40,6 +40,7 @@ public class BQueue<T> {
 
         this.queue.offer(data);
         notifyAll();
+        System.out.println("QUEUE SIZE : " + this.queue.size());
     }
 
     /**
@@ -59,6 +60,7 @@ public class BQueue<T> {
         System.out.println(Thread.currentThread().getName() + " consumed a pizza");
         T poll = this.queue.poll();
         notifyAll();
+        System.out.println("QUEUE SIZE : " + this.queue.size());
         return poll;
 
     }
