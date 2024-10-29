@@ -11,7 +11,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
 
-        int portNumber = 8080;
+        int portNumber = 9000;
 
         ServerSocket serverSocket = new ServerSocket(portNumber);
         Socket clientSocket1 = serverSocket.accept();
