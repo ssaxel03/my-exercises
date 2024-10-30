@@ -14,7 +14,7 @@ public class Client implements Runnable {
     private boolean originalName;
     private String name;
     private TextColor textColor;
-    private final Socket clientSocket;
+    private Socket clientSocket;
     private final Server server;
 
     PrintWriter out;
@@ -37,27 +37,39 @@ public class Client implements Runnable {
 
     }
 
-    @Override
-    public void run() {
+    public void setClientSocket(Socket clientSocket) {
+        this.clientSocket = clientSocket;
 
+        try {
+            this.out = new PrintWriter(this.clientSocket.getOutputStream(), true);
+            this.in = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        this.setName();
-
-        server.sendMessage(this, this.getTextColor() + this.getName() + " joined the server", false);
+        server.sendMessage(this, this.getName() + " joined the server", false);
         this.sendMessage(this.getTextColor() + this.getName() + " joined the server");
+
+    }
+
+    @Override
+    public synchronized void run() {
+
+        if(originalName) {
+            this.setName();
+        }
 
         while (true) {
             try {
                 String input = in.readLine();
                 if (input == null) {
                     this.quit();
-                    server.sendMessage(this, this.name + " left the server", false);
+                    server.sendMessage(this, this.getTextColor() + this.name + " left the server", false);
                     return;
                 }
                 server.sendMessage(this, input, true);
             } catch (IOException ignored) {
             }
-
 
         }
 
@@ -67,7 +79,7 @@ public class Client implements Runnable {
         out.println(message);
     }
 
-    public void setName() {
+    public synchronized void setName() {
 
         String oldName = this.name;
 
@@ -78,7 +90,7 @@ public class Client implements Runnable {
             String name;
             while (nameFlag) {
                 name = in.readLine();
-                if (name.contains(" ") || name.length() > 10) {
+                if (name.contains(" ") || name.length() > 10 || name.isEmpty()) {
                     this.sendMessage(TextColor.ANSI_RESET.getColor() + "Name not valid.\nThe name must have a maximum of 10 character and must not have spaces.\nType your name below:" + this.getTextColor());
                     continue;
                 }
@@ -92,6 +104,9 @@ public class Client implements Runnable {
         if (!originalName) {
             server.sendMessage(this, oldName + " changed his name to " + this.getName(), false);
             this.sendMessage(oldName + " changed his name to " + this.getName());
+        } else {
+            server.sendMessage(this, this.getName() + " joined the server", false);
+            this.sendMessage(this.getTextColor() + this.getName() + " joined the server");
         }
 
         this.originalName = false;
@@ -101,6 +116,7 @@ public class Client implements Runnable {
     public void setColor() {
 
         String oldColor = this.textColor.getName();
+        TextColor oldTextColor = this.textColor;
 
         out.println(colorOptions);
 
@@ -126,8 +142,8 @@ public class Client implements Runnable {
         } catch (IOException ignored) {
         }
 
-        server.sendMessage(this, this.getTextColor() + this.name + " changed his color from " + oldColor + " to " + this.textColor.getName(), false);
-        this.sendMessage(this.getTextColor() + this.name + " changed his color from " + oldColor + " to " + this.textColor.getName());
+        server.sendMessage(this, this.name + " changed his color from " + oldTextColor.getColor() + oldColor + TextColor.ANSI_RESET.getColor() + " to " + this.getTextColor() + this.textColor.getName() + TextColor.ANSI_RESET.getColor(), false);
+        this.sendMessage(TextColor.ANSI_RESET.getColor() + this.name + " changed his color from " + oldTextColor.getColor() + oldColor + TextColor.ANSI_RESET.getColor() + " to " + this.getTextColor() + this.textColor.getName());
 
     }
 
@@ -143,14 +159,25 @@ public class Client implements Runnable {
     }
 
     public String getDetails() {
-        return String.format("%1$10s %2$15s %3$7S",
+
+        String address = this.getAddress().startsWith("0") ? "host" : this.getAddress();
+
+        return String.format("%1$10s %2$15s %3$s",
                 this.name,
-                (((InetSocketAddress) this.clientSocket.getRemoteSocketAddress()).getAddress()).toString().replace("/", ""),
-                !this.clientSocket.isClosed() ? "ONLINE" : "OFFLINE");
+                address,
+                !this.clientSocket.isClosed() ? TextColor.ANSI_GREEN.getColor() + "ONLINE" + TextColor.ANSI_RESET.getColor() : TextColor.ANSI_RED.getColor() + "OFFLINE" + TextColor.ANSI_RESET.getColor());
     }
 
     public String getTextColor() {
         return textColor.getColor();
+    }
+
+    public String getAddress() {
+        return (((InetSocketAddress) this.clientSocket.getRemoteSocketAddress()).getAddress()).toString().replace("/", "");
+    }
+
+    public boolean isOnline() {
+        return !this.clientSocket.isClosed();
     }
 
 

@@ -1,8 +1,12 @@
 package io.codeforall.fanstatics;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.StringJoiner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,11 +40,31 @@ public class Server {
 
     public void run() {
 
+        serverloop:
         while(true) {
 
             try {
 
-                clients.add(new Client(serverSocket.accept(), this));
+                Socket newSocket = serverSocket.accept();
+
+                String newSocketAddress = (((InetSocketAddress) newSocket.getRemoteSocketAddress()).getAddress()).toString().replace("/", "");
+
+                for (Client client : clients) {
+                    if(client.getAddress().equals(newSocketAddress)) {
+                        if(client.isOnline()) {
+                            PrintWriter out = new PrintWriter(newSocket.getOutputStream(), true);
+                            out.println("Only 1 connection per computer allowed");
+                            out.close();
+                            newSocket.close();
+                            continue serverloop;
+                        }
+                        client.setClientSocket(newSocket);
+                        cachedPool.submit(client);
+                        continue serverloop;
+                    }
+                }
+
+                clients.add(new Client(newSocket, this));
 
                 cachedPool.submit(clients.get(clients.size() - 1));
 
@@ -89,7 +113,11 @@ public class Server {
                 sender.sendMessage(inputSplit.length == 1 ? help : TextColor.ANSI_RESET.getColor() + "Invalid arguments" + sender.getTextColor());
                 break;
             default:
-                broadcast(sender, input, regular);
+                if (inputSplit[0].startsWith("/")) {
+                    sender.sendMessage(TextColor.ANSI_RESET.getColor() + "Unknown command" + sender.getTextColor());
+                } else {
+                    broadcast(sender, input, regular);
+                }
         }
 
     }
@@ -124,12 +152,27 @@ public class Server {
 
         StringBuilder toBeDelivered = new StringBuilder();
 
+        StringJoiner online = new StringJoiner("\n");
+        StringJoiner offline = new StringJoiner("\n", "\n", "");
+
         if(inputSplit.length == 2) {
             if(inputSplit[1].equals("-d")) {
                 for(Client client : clients) {
-                    toBeDelivered.append(client.getDetails()).append("\n");
+                    toBeDelivered.append(client.getDetails());
+                    if (client.isOnline()) {
+                        online.add(client.getDetails());
+                    } else {
+                        offline.add(client.getDetails());
+                    }
                 }
-                sender.sendMessage(TextColor.ANSI_RESET.getColor() + toBeDelivered + sender.getTextColor());
+
+                String title = String.format("%1$10s %2$15s %3$s\n", "Username", "IP Address", "Status");
+
+                String offlineOut = offline.length() < 3 ? "" : String.valueOf(offline);
+
+                String message = TextColor.ANSI_RESET.getColor() + title + online + offlineOut + sender.getTextColor();
+
+                sender.sendMessage(message);
                 return;
             }
 
@@ -141,7 +184,7 @@ public class Server {
         if(inputSplit.length == 1) {
 
             for(Client client : clients) {
-                toBeDelivered.append(String.format("%1$7s", client.getName())).append("\n");
+                toBeDelivered.append(String.format("%1$10s", client.getName())).append("\n");
             }
             sender.sendMessage(TextColor.ANSI_RESET.getColor() + toBeDelivered + sender.getTextColor());
             return;
@@ -162,14 +205,14 @@ public class Server {
             toBeDelivered = sender.getName() + ": " + message;
         }
 
-        System.out.println(sender.getTextColor() + toBeDelivered + TextColor.ANSI_RESET.getColor());
+        System.out.println((regular ? sender.getTextColor() : TextColor.ANSI_RESET.getColor()) + toBeDelivered + TextColor.ANSI_RESET.getColor());
 
         for (Client client : clients) {
             if(client.equals(sender)) {
                 continue;
             }
 
-            client.sendMessage(sender.getTextColor() + toBeDelivered + client.getTextColor());
+            client.sendMessage( (regular ? sender.getTextColor() : TextColor.ANSI_RESET.getColor()) + toBeDelivered + client.getTextColor());
         }
 
     }
