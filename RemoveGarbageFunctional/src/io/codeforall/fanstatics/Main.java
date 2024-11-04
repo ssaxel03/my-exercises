@@ -2,7 +2,6 @@ package io.codeforall.fanstatics;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.StringJoiner;
 
 public class Main {
 
@@ -15,6 +14,7 @@ public class Main {
                 .map(String::toUpperCase)
                 .filter(word -> !Objects.equals(word, "GARBAGE"))
                 .reduce("", (acc, elem) -> acc + " " + elem));
+
 
     }
 
