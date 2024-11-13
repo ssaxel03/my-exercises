@@ -4,7 +4,7 @@ import io.codeforall.fanstatics.abilities.ShieldBlock;
 
 public class Warrior extends Hero{
     public Warrior() {
-        super(200, 60, 30, 50, 40, new ShieldBlock(), "Warrior");
+        super(200, 60, 30, 50, 40, new ShieldBlock(), "WARRIOR");
     }
 
     @Override

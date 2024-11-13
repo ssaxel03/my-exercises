@@ -4,7 +4,7 @@ import io.codeforall.fanstatics.abilities.Fireball;
 
 public class Mage extends Hero {
     public Mage() {
-        super(100, 40, 25, 200, 100, new Fireball(), "Mage");
+        super(100, 40, 25, 200, 100, new Fireball(), "MAGE");
     }
 
     @Override

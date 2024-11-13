@@ -24,7 +24,7 @@ public enum Move {
     private final PokemonType type;
     private final int attack;
     private final int accuracy;
-    private final int limit;
+    private int limit;
 
     Move(PokemonType type, int attack, int accuracy, int limit) {
         this.type = type;
@@ -47,6 +47,10 @@ public enum Move {
 
     public int getLimit() {
         return limit;
+    }
+
+    public void decLimit() {
+        this.limit--;
     }
 }
 

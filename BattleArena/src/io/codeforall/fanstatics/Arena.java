@@ -16,6 +16,8 @@ public class Arena {
 
     public Hero play() {
 
+        System.out.println("NEW BATTLE\n");
+
         TurnManager turnManager = new TurnManager();
 
         while(!isOver()) {
@@ -24,7 +26,7 @@ public class Arena {
 
         Hero winner = heroes.stream().filter(Hero::isAlive).findAny().get();
 
-        System.out.println(winner.getName() + " wins!");
+        System.out.println(winner.getName() + " WINS\n");
         return winner;
 
     }

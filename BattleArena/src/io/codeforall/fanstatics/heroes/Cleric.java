@@ -4,7 +4,7 @@ import io.codeforall.fanstatics.abilities.Heal;
 
 public class Cleric extends Hero {
     public Cleric() {
-        super(90, 45, 20, 150, 90, new Heal(), "Cleric");
+        super(90, 45, 20, 150, 90, new Heal(), "CLERIC");
     }
 
     @Override

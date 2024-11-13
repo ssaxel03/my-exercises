@@ -4,7 +4,7 @@ import io.codeforall.fanstatics.abilities.SneakAttack;
 
 public class Rogue extends Hero {
     public Rogue() {
-        super(100, 30, 10, 70, 40, new SneakAttack(30), "Rogue");
+        super(100, 30, 10, 70, 40, new SneakAttack(30), "ROGUE");
     }
 
     @Override
