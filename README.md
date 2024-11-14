@@ -1,7 +1,7 @@
 # Summary
 <p align="justify">
   This repository contains a comprehensive set of exercises from the programming bootcamp I’m currently participating in at Code for All. 
-  The projects span a broad range of programming concepts and applications—from server development to console games and everything in between
+  The projects span a broad range of programming concepts and applications—from server development to console games and everything in between.
 </p>
 
 # Exercises description
