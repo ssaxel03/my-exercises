@@ -5,6 +5,7 @@ import io.codeforall.fanstatics.observer.EventType;
 public class Main {
 
     public static void main(String[] args) {
+
         // create both the event manager and the store and associate them
         EventManager eventManager = new EventManager();
         Store walmart = new Store("Walmart");
