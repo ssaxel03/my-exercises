@@ -1,4 +1,5 @@
 body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #181818;
     margin: 20px 733px 0px 733px;
 }
@@ -6,26 +7,37 @@ body {
 .white-box {
     background-color: white;
     width: 770px;
-    margin: auto;
-    align-content: center;
+    margin: 20px 20px 20px 20px;
     padding: 0px 0px 50px 0px;
-    display: inline-block;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flexy {
+    display: flex;
+    gap: 25px;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
 }
 
 .outer-box {
     background-color: #f59e42;
-    width: 300px;
-    height: 300px;
-    margin: 0px 50px;
+    width: 150px;
+    height: 150px;
+    margin: 0px 0px;
     display: inline-flex;
 }
 
 .inner-box {
     background-color: green;
     border: black 10px solid;
-    width: 200px;
+    width: 100px;
+    height: 100px;
     display: inline-block;
-    margin: 50px;
+    margin: 15px;
     text-align: center;
     padding: 0px;
 }
@@ -33,18 +45,17 @@ body {
 .text-box {
     color: black;
     background-color: white;
-    width: fit-content;
-    height: fit-content;
+    width: 56px;
+    height: 20px;
     display: inline-block;
-    margin: 81px 66px;
+    margin: 40px 0px;
     text-align: center;
+    overflow: hidden;
 }
 
 .captions {
-    display: inline-block;
-    align-self: flex-end;
-    position: absolute;
-    margin-top: 255px;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .captions * {
@@ -60,12 +71,14 @@ body {
     background-color: green;
     text-align: center;
     line-height: 35px;
+    border-radius: 5px;
 }
 
 .margin {
     background-color: #f59e42;
     text-align: center;
     line-height: 35px;
+    border-radius: 5px;
 }
 
 .border {
@@ -73,9 +86,10 @@ body {
     text-align: center;
     line-height: 35px;
     border: black 5px solid;
+    border-radius: 5px;
 }
 
 h1 {
+    text-align: center;
     color: black;
-    margin: 50px;
 }
