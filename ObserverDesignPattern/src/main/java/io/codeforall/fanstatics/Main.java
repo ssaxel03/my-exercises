@@ -26,7 +26,6 @@ public class Main {
         eventManager.subscribe(EventType.COOKIE_MAKER_REPLENISH, lucas);
 
         // now let's see what happens
-
         // walmart goes on sale
         walmart.goOnSale();
         System.out.println();
@@ -34,6 +33,6 @@ public class Main {
         walmart.buyAllProducts();
         System.out.println();
         // walmart replenishes its cookie maker stock
-        walmart.replenishCookieMakerStock();
+
     }
 }

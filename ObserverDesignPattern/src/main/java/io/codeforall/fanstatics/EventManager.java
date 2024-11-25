@@ -36,12 +36,16 @@ public class EventManager implements Publisher {
     public void notify(EventType event) {
 
         for (Subscriber listener : listeners.get(event)) {
+            // send email
+            // send sms
+            // send simple mobile notification
             listener.update(event.getDefaultMessage());
         }
     }
 
     @Override
     public void notify(EventType event, String customMessage) {
+
         for (Subscriber listener : listeners.get(event)) {
             listener.update(customMessage);
         }
