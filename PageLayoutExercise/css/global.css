@@ -1,0 +1,91 @@
+body {
+    background-color: #333333;
+    display: flex;
+    flex-flow: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+}
+
+#navbar {
+    height: 40px;
+    width: 100%;
+    background-color: #333333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: fixed;
+}
+
+header {
+    height: 200px;
+    background-color: #3690F3;
+    color: white;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 4;
+}
+
+aside {
+    background-color: #333333;
+    color: white;
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+}
+
+#main-content {
+    height: 2000px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 4;
+}
+
+#sidebar {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    position: sticky;
+    top: 40px;
+}
+
+footer {
+    height: 100px;
+    background-color: #333333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+}
+
+.navbar-ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
