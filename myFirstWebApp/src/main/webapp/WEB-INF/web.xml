@@ -6,15 +6,25 @@
          version="3.1">
     
     <display-name>A Servlet WebApp</display-name>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>io.codeforall.fanstatics.LoginCustomerMVC</servlet-class>
+    </servlet>
     
     <servlet>
         <servlet-name>CustomerMVC</servlet-name>
         <servlet-class>io.codeforall.fanstatics.CustomerMVC</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/loginmvc</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>CustomerMVC</servlet-name>
-        <url-pattern>/cenas</url-pattern>
+        <url-pattern>/customermvc</url-pattern>
     </servlet-mapping>
     
 </web-app>

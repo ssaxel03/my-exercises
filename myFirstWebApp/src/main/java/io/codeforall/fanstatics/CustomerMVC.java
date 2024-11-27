@@ -11,16 +11,21 @@ import java.io.PrintWriter;
 public class CustomerMVC extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         User user = new User();
-        user.setName("Afonso Gunão");
-        user.setEmail("afonsosexo@gmail.com");
-        user.setPhone("912345678");
+        user.setName(req.getParameter("name"));
+        user.setEmail(req.getParameter("email"));
+        user.setPhone(req.getParameter("phone"));
 
         req.setAttribute("user", user);
 
+
+
+        System.out.println(user.getName() + " " + user.getEmail() + " " + user.getPhone());
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/CustomerMVC.jsp");
         dispatcher.forward(req, resp);
+
     }
 }
