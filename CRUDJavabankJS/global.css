@@ -1,0 +1,54 @@
+body {
+    background-color: #EEEEEE;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: #333333;
+}
+
+h4 {
+    color: #31708F;
+}
+
+table {
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    margin-bottom: 5rem;
+}
+
+th,td {
+    padding: 0.5rem;
+    background-color: #EEEEEE;
+}
+
+.form-control {
+    resize: none;
+}
+
+.cell {
+    background-color: white;
+    border: 1px solid #E0E0E0;
+}
+
+#customerListMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.button-cell {
+    width: fit-content;
+}
