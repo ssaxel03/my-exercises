@@ -4,10 +4,12 @@ window.addEventListener("load", () => {
     populateTable();
 
     document.querySelector("#reset").addEventListener("click", () => {
-        document.querySelector("#firstNameTA").textContent = "";
-        document.querySelector("#lastNameTA").textContent = "";
-        document.querySelector("#emailTA").textContent = "";
-        document.querySelector("#phoneTA").textContent = "";
+
+        document.querySelector("#idForm").setAttribute("value", null);
+        document.querySelector("#firstNameTA").value = "";
+        document.querySelector("#lastNameTA").value = "";
+        document.querySelector("#emailTA").value = "";
+        document.querySelector("#phoneTA").value = "";
     })
 
     document.querySelector("#add").addEventListener("click", async () => {
@@ -28,10 +30,10 @@ window.addEventListener("load", () => {
                 body: JSON.stringify(customer),
             }).catch((error) => console.log(error));
 
-            document.querySelector("#firstNameTA").textContent = "";
-            document.querySelector("#lastNameTA").textContent = "";
-            document.querySelector("#emailTA").textContent = "";
-            document.querySelector("#phoneTA").textContent = "";
+            document.querySelector("#firstNameTA").value = "";
+            document.querySelector("#lastNameTA").value = "";
+            document.querySelector("#emailTA").value = "";
+            document.querySelector("#phoneTA").value = "";
 
             populateTable();
 
@@ -60,10 +62,10 @@ window.addEventListener("load", () => {
             }).catch((error) => console.log(error));
 
             document.querySelector("#idForm").setAttribute("value", null);
-            document.querySelector("#firstNameTA").textContent = "";
-            document.querySelector("#lastNameTA").textContent = "";
-            document.querySelector("#emailTA").textContent = "";
-            document.querySelector("#phoneTA").textContent = "";
+            document.querySelector("#firstNameTA").value = "";
+            document.querySelector("#lastNameTA").value = "";
+            document.querySelector("#emailTA").value = "";
+            document.querySelector("#phoneTA").value = ""
 
             populateTable();
 
@@ -117,10 +119,10 @@ async function populateTable() {
         editBtn.innerHTML = "EDIT";
         editBtn.addEventListener("click", () => {
             document.querySelector("#idForm").setAttribute("value", user.id);
-            document.querySelector("#firstNameTA").textContent = user.firstName;
-            document.querySelector("#lastNameTA").textContent = user.lastName;
-            document.querySelector("#emailTA").textContent = user.email;
-            document.querySelector("#phoneTA").textContent = user.phone;
+            document.querySelector("#firstNameTA").value = user.firstName;
+            document.querySelector("#lastNameTA").value = user.lastName;
+            document.querySelector("#emailTA").value = user.email;
+            document.querySelector("#phoneTA").value = user.phone;
         })
 
         editCell.appendChild(editBtn);
